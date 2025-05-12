@@ -15,6 +15,7 @@ function newName(){
     // Si el usuario cancela o no ingresa un nombre, no hacer nada
     else {
         alert("No se ha cambiado el nombre.");
+        document.getElementById("name").innerHTML = "nombre";
     }
     
 }
