@@ -46,6 +46,22 @@ let valor2 = 4;
 
 console.log("El resultado de " + valor1 + " * " + valor2 + " = " + valor1 * valor2 + " pesos.");
 console.log(`El resultado de ${valor1} * ${valor2} = ${valor1*valor2} pesos.`);
+/* 
+ Crear una variable con el nombre de la persona que cumple años.
+ Crear una variable con el regalo que le darás.
+
+ Mostrar en consola el mensaje que incluya el nombre de las personas y el regalo
+*/
+let nombre = "Jenipher";
+let regalo = "una alexa";
+
+function mostrarCumple( nombre, regalo ) {
+  console.log(`Felicidades ${ nombre } por tu cumpleaños, te regalo ${ regalo }`);
+}
+
+mostrarCumple(nombre, regalo);
+
+
 
 /*
  Tipos de datos number.
@@ -68,13 +84,19 @@ console.log( typeof ( 3 + "Viernes temático" ) ); // 'string'
 console.log( typeof ( "3Viernes temático" ) ); // 'string'
 console.log( 4 / 0 ); // +Infinity
 
+// Compruebe si las siguientes variables son del tipo number
+const num1 = 42;
+console.log( typeof num1 === "number" ); 
+// Compruebe si las siguientes variables son del tipo string
+const str1 = "Luis";
+console.log( typeof str1 === "string" );
 
 /*
  Cuando se realizan operaciones que exceden los límites
  de MAX_SAFE_INTEGER se produce una pérdida de precisión.
 
  Perdida precisión: No se pueden representar exactamente ciertos valores.
-  típicamente en operaciones de números de punto flotate.
+  típicamente en operaciones de números de punto flotante.
 */
 console.log( `Pérdida de precisión: 0.1 + 0. 2 = ${ 0.1 + 0.2 }`); // 0.30000000000000004
 console.log( `Valor entero seguro en JavaScript: ${Number.MAX_SAFE_INTEGER} `); // 9007199254740991
