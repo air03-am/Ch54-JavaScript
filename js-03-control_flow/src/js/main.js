@@ -42,6 +42,15 @@
 
 */
 
+/* 
+ Crear un arrow function que reciba el valor de edad.
+ Si la edad es mayor o igual a 18, la función debe
+ retornar el mensaje "Eres mayor de edad".
+ En caso contrario, retornar el mensaje "Eres menor de edad".
+ - Realizar la versión de if-else sin usar el bloque de código {}
+*/
+
+
 
 
 
@@ -101,8 +110,79 @@
 
 */
 
+const verficarPagoDeTarjeta = ( estaPagado ) =>{
+    let msj;
+    if( estaPagado) {
+        msj = "La tarjta ha sido pagada";
+    } else {
+        msj = "La tarjeta no ha sido pagada";
+    }
+    return msj;
+}
+console.log( verficarPagoDeTarjeta( true ) ); //La tarjeta ha sido pagada
+console.log( verficarPagoDeTarjeta( false ) ); // La tarjeta no ha sido pagada
+
+//Version con operador ternario
+const verficarPagoDeTarjetaUsandoTernario = ( estaPagado ) =>{
+    return estaPagado ? "La tarjeta ha sido pagada" : "La tarjeta no ha sido pagada";
+}
+console.log( verficarPagoDeTarjetaUsandoTernario( true ) ); // "La tarjta ha sido pagada"
+console.log( verficarPagoDeTarjetaUsandoTernario( false ) ); // "La tarjeta no ha sido pagada"
+
+/*  
+ Dado un número entero, imprimir:
+
+ - "Negativo" si el número es menor que 0
+ - "Cero" si el número es igual a 0
+ - "Positivo" si el número es mayor que 0 pero menor que 100
+ - "Grande" si el número es mayor o igual a 100
+
+ --Realizar una función que reciba el número y retorne el mensaje
+ --El retonorno debe ser impreso en la consola
+ --Realizar una versión con if-else y otra con operador ternario
+*/
+
+//Función que recibe el numero y retorna el mensaje
+const verificarNumero = ( numero ) => {
+    if( numero < 0 ) {
+        return "Negativo";
+    } else if( numero === 0 ) {
+        return "Cero";
+    } else if( numero > 0 && numero < 100 ) {
+        return "Positivo";
+    } else {
+        return "Grande";
+    }
+    return numero;
+}
+console.log( verificarNumero( -5 ) ); // "Negativo"
+ // Version con operador ternario
+const verificarNumeroConTernario = ( numero ) => {
+    return numero < 0 ? "Negativo" : 
+    numero === 0 ? "Cero" : 
+    numero > 0 && numero < 100 ? "Positivo" : 
+    "Grande";
+}
+console.log( verificarNumeroConTernario( 0 ) ); // "Cero"
+console.log( verificarNumeroConTernario( 50 ) ); // "Positivo"
+console.log( verificarNumeroConTernario( 100 ) ); // "Grande"
 
 
+//Version con switch
+const verificarNumeroConSwitch = ( numero ) => {
+    switch( true ) {
+        case ( numero < 0 ):
+            return "Negativo";
+        case ( numero === 0 ):
+            return "Cero";
+        case ( numero > 0 && numero < 100 ):
+            return "Positivo";
+        default:
+            return "Grande";
+    }
+}
+console.log( verificarNumeroConSwitch( 50 ) ); // "Positivo"
+console.log( verificarNumeroConSwitch( 0 ) ); // "Cero"
 
 /**
  *  Función que reciba la edad de una persona y devuelva el mensaje:
