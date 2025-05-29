@@ -185,7 +185,7 @@ const edadMascotaString = String( edadMascota );
 console.log(`Mi mascota tiene ${ edadMascotaString } años`);
 console.log(`Mi mascota tiene ${ edadMascota } años`);
 console.log( String( true ) ); // "true"
-console.log( String( null ) ); // 
+console.log( String( null ) ); // "null"
 console.log( String( undefined ) ); // "undefined"
 console.log( String( [] ) ); // empty Array-> ""
 console.log( String( [2,3,4,5,null,3] ) ); // "2,3,4,5,,3"
