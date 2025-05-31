@@ -232,7 +232,7 @@ imprimirMensaje(enviarAParrafo); // El saludo es: Hola, buen día Hola Ch54
 
 // usando la función imprimirMensaje, enviar un callback para que
 // imprima con alert
-//imprimirMensaje(alert);
+// imprimirMensaje(alert);
 
 /*
   Realizar una función que sume dos numeros y que imprima
@@ -333,10 +333,10 @@ console.log(`Resultado final: ${ factorialConRecursividad(5)}`); // 120
 
 /*
     parámetro   recursividad(n-1)   returnFnc
-     5              5-1 = 4            120
-     4              4-1 = 3            24
-     3              3-1 = 2            6       
-     2              2-1 = 1            2         
+     5              5-1 = 4           5*24= 120
+     4              4-1 = 3           4*6 = 24
+     3              3-1 = 2           3*2 = 6 6       
+     2              2-1 = 1           2*1 = 2 2         
      1               ----              1
   
 */
