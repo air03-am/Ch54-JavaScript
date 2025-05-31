@@ -163,7 +163,7 @@ console.log(`Resultado usado Arrow Function: ${areaTrianguloFlecha(5, 10)}`);
 
 // ¿Qué sucede si uso console.log como retorno?
 // const imprimirArea = (base, altura) => console.log(calculaArea3(base, altura));
-// imprimirArea(12, 20);
+// console.log(imprimirArea(12, 20)); //Undefined
 
 function imprimirEnConsola(mensaje) {
   console.log(mensaje);
@@ -179,8 +179,8 @@ console.log(imprimirEnConsola("Hola mundo")); // undefined
 // const imprimirAreaCirculo = (radio) => 
 //   document.getElementById("area-circulo").innerHTML = areaCirculo(radio);
 
-const circleArea = (radio) => Math.PI * radio ** 2;
-const imprimirAreaCirculo = (radio) =>
+const circleArea = (radio) => Math.PI * radio ** 2; // Math.PI * Math.pow(radio, 2);
+const imprimirAreaCirculo = (radio) => 
   document.getElementById("area-circulo").innerText = circleArea(radio);
 imprimirAreaCirculo(5);
 
@@ -211,11 +211,11 @@ console.log(parseInt("D2042D", 16)); // 1350861 (base 16: 0,1,2,3,4,5,6,7,8,9,A,
 
 
 const imprimirMensaje = (fncCallBack) => fncCallBack("Hola Ch54");
-// 18("Hola Ch54");
-// "patito"("Hola Ch54");
-// console.log("Hola Ch54");
-// undefined("Hola Ch54");
-//enviarAParrafo("Hola Ch54");
+                                                // 18("Hola Ch54");
+                                                // "patito"("Hola Ch54");
+                                                // console.log("Hola Ch54");
+                                                // undefined("Hola Ch54");
+                                                //enviarAParrafo("Hola Ch54");
 // imprimirMensaje( 18 ); // fncCallBack is not a function
 // imprimirMensaje( "Patito" ); // fncCallBack is not a function
 imprimirMensaje(console.log); // "Hola Ch54"
