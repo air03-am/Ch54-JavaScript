@@ -233,7 +233,6 @@ const velocidadVentilador2 = (velocidad) => {
 }
 console.log(velocidadVentilador2(59));
 
-
 // ------------------------ Operador ternario --------------------------
 /*
  Es el único operador de JavaScript que tiene 3 operandos.
@@ -279,17 +278,18 @@ console.log( verficarPagoDeTarjetaUsandoTernario( false ) ); // "La tarjeta no h
 //Función que recibe el numero y retorna el mensaje
 const verificarNumero = ( numero ) => {
     if( numero < 0 ) {
-        return "Negativo";
+        resultado = "Negativo";
     } else if( numero === 0 ) {
-        return "Cero";
+        resultado = "Cero";
     } else if( numero > 0 && numero < 100 ) {
-        return "Positivo";
+        resultado = "Positivo";
     } else {
-        return "Grande";
+        resultado = "Grande";
     }
-    return numero;
+    return resultado;
 }
 console.log( verificarNumero( -5 ) ); // "Negativo"
+
  // Version con operador ternario
 const verificarNumeroConTernario = ( numero ) => {
     return numero < 0 ? "Negativo" : 
@@ -302,21 +302,27 @@ console.log( verificarNumeroConTernario( 50 ) ); // "Positivo"
 console.log( verificarNumeroConTernario( 100 ) ); // "Grande"
 
 
-//Version con switch
+//Version con switch no recomendada para este caso, no funciona con operadores lógicos, 
+// pero se puede hacer con true si tenemos un caso true entramos a la opción correcta
 const verificarNumeroConSwitch = ( numero ) => {
     switch( true ) {
         case ( numero < 0 ):
-            return "Negativo";
+            resultado = "Negativo";
+            break;
         case ( numero === 0 ):
-            return "Cero";
+            resultado = "Cero";
+            break;
         case ( numero > 0 && numero < 100 ):
-            return "Positivo";
+            resultado = "Positivo";
+            break;
         default:
-            return "Grande";
+            resultado = "Grande";
     }
+    return resultado;
 }
-console.log( verificarNumeroConSwitch( 50 ) ); // "Positivo"
-console.log( verificarNumeroConSwitch( 0 ) ); // "Cero"
+console.log('si el numero es negativo: '); // "Negativo"
+console.log( verificarNumeroConSwitch(-5 ) ); // "Positivo"
+console.log( verificarNumeroConSwitch( 10 ) ); // "Cero"
 
 /**
  *  Función que reciba la edad de una persona y devuelva el mensaje:
