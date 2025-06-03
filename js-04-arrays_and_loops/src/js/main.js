@@ -84,6 +84,7 @@ imprimirCantantes3(cantantes);
  */
 const cantantes2 = ["Juan Gabriel", "José José", "Rocío Dúrcal", "Ana Gabriel"];
 const listaCantantes2 = document.getElementById("cantantes-lista2");
+
 const imprimirCantantes4 = (cantantes2 ) => {
     let cantantesConcatenados = "";
     for (const cantante of cantantes2) {
@@ -107,6 +108,7 @@ const imprimirDocumento = (arregloFinal) => document.getElementById("cantantes-l
 imprimirDocumento(cantantes);
  */
 
+
 // ------------------- Uso de break en ciclos ----------------------------
 // break detiene la ejecución de la iteración en curso y termina el ciclo.
 
@@ -121,12 +123,22 @@ for ( ;   ;  ){
 }
 
 // ------------------- Uso de break y label en ciclos anidados ----------------------------
-multiplicando:
+// multiplicando:
+// for (let i = 1; i <= 7; i++ ){
+//     multiplicador:
+//     for (let j = 1; j <= 10 ; j++){        
+//         console.log(`${i} x ${j} = ${i * j}`);             
+//         if( i >= 4 ) break; //imprime la tabla de multiplicar del 1 al 3 y de la 4 en adelante, imprimer solo el x 1 
+//     }
+
+// }
+
+multiplicando: //label 
 for (let i = 1; i <= 7; i++ ){
     multiplicador:
     for (let j = 1; j <= 10 ; j++){        
         console.log(`${i} x ${j} = ${i * j}`);             
-        if( i >= 4 ) break multiplicando;
+        if( i >= 4 ) break multiplicando; //imprime la tabla de multiplicar del 1 al 3 y la del 4 x 1  al usar el label, termina el ciclo
     }
 
 }
@@ -138,12 +150,19 @@ for (let myIteration = 0; myIteration <= 5; myIteration++) {
 }
 console.log("Final", myIteration); // 6
 
+for (let myIteration = 0; myIteration <= 5; myIteration++) {
+    console.log("For loop", myIteration ); //  0, 1, 2
+    if (myIteration === 2) {
+        break; // Sale del bucle
+    } 
+}
+console.log("Final", myIteration); // 2
 
+console.log(   NaN === NaN );  // false
 // ------------------- Uso de continue en ciclos ----------------------------
 // break: Termina completamente un bucle (for, while, switch, etc.).
 // continue: Salta la iteración actual y pasa a la siguiente sin salir del bucle.
 
-console.log(   NaN === NaN );  // false
 for (let i = 0 ; i <= 5; i++ ){
     if ( i === 3) continue;
     console.log("Estoy dentro del ciclo for"); 
@@ -180,12 +199,30 @@ for (let i = 0 ; i <= 5; i++ ){
  Si la respuesta es "si", genera de forma aleatoria un número.
  En cas contrario, despedirse.
 */ 
+
+// --------- Ejercicio ------------------
+
 /* while(  confirm("¿Quieres tu número de la suerte")  ){
     const numeroSuerte = Math.random(); // 0 ... 1.0 (sin incluir 1.0)
     console.log("Tu número de la suerte es: " + numeroSuerte);
 }
 console.log("Gracias por participar");
  */
+
+// ============== Ciclo For loop vs While loop ======================
+/* 
+ for (let i = 0; i < 5; i++) {
+    console.log("For loop: ", i); // 0, 1, 2, 3, 4
+}
+let i = 0;
+while (i < 5) {
+    console.log("While loop: ", i); // 0, 1, 2, 3, 4
+    i++;
+}
+*/
+
+// ----------- Ejercicio ------------------
+
 /* 
  Uso de Math.random()
     - Genera 5 números aleatorio entre 0.0 y 10.0 (sin incluir 10.0)
