@@ -234,7 +234,6 @@ const generarNumerosAleatorios = (cantidad) => {
         const numeroAleatorio = Math.random() * 10;
         console.log("Número aleatorio: ", numeroAleatorio); // 0.0...10.0
     }
-    return numeroAleatorio;
 };
 generarNumerosAleatorios(5);
 
@@ -247,12 +246,82 @@ const generarNumerosAleatorios2 = (cantidad) => {
     for (let i = 0; i < cantidad; i++) {
         const numeroAleatorio = Math.random();
         const escalarNumero = numeroAleatorio * 10;
-        const numerosEntero = Math.floor(escalarNumero);
+        const numerosEntero = Math.floor(escalarNumero); //con ceil obtendriamos 1...10 o multiplicando por 11 -> numeroAleatorio * 11
         console.log("Número aleatorio: ", numerosEntero); // 0...9
     }
-    return numerosAleatorios;
 };
 generarNumerosAleatorios2(5);
+
+//valor por defecto en una funcion minNum = 10
+const generarNumerosAleatorios3 = (cantidad, minNum = 10, maxNum = 10) => {
+    for (let i = 0; i < cantidad; i++) {
+        const numeroAleatorio = Math.random();
+        const escalarNumero = numeroAleatorio * ((maxNum - minNum) + 1); // +1 para incluir el 10
+        const numerosEntero = Math.floor(escalarNumero + minNum); // minNum...maxNum
+        console.log("Número aleatorio entre ${minNum} y ${maxNum}: ${numerosEnteros} ", numerosEntero); // 0...9
+    }
+};
+generarNumerosAleatorios3(10, 70, 90); // Genera 5 números aleatorios entre 50 y 60 (sin incluir 60)
+
+/*
+    Melate Chocolate
+    1. Al pulsar el botón generar mis numeros de la suerte
+    2. Genera 6 números aleatorios entre 1 y 54 
+    3. Mostrar el resultado en el DOM.
+*/
+
+
+/*
+ Comentario de documentación (JSDoc) para una función JavaScript, no la función en sí. 
+ Los símbolos @ son parte de la sintaxis de JSDoc para definir metadatos. (Siguiente comentario)
+ */
+
+/**
+ * Generar un número aleatorio entre un rango de números
+ * @param {number} minNum
+ * @param {number} maxNum
+
+*/ 
+const generarNumeroAleatorio = (minNum, maxNum) => {
+    const numeroAleatorio = Math.random();
+    const escalarNumero = numeroAleatorio * (maxNum - minNum + 1); 
+    const numeroEntero = Math.floor(escalarNumero + minNum); 
+    return numeroEntero;
+} //Esta fúnción genera un solo número aleatorio entre un rango de números
+
+const elNumeroExisteEnArreglo = (arreglo, numero) => {
+    // Verifica si el número existe en el arreglo
+    for (const elemento of arreglo) {
+        if (elemento === numero) {
+            return true; // El número existe en el arreglo
+        }
+    }
+    return false; // El número no existe en el arreglo
+} // Esta función verifica si un número existe en un arreglo
+
+// Función imprimir en el DOM
+const imprimirMelateChocolate = (numeros) => {
+    const referencia = document.getElementById("melate-chocolate");
+    referencia.innerHTML = ` ${numeros.join(' - ')}`; // Une los números con un guion
+}
+
+// Función generar números de la suerte
+
+const generarNumerosSuerte = (size = 6, minNum = 1, maxNum = 54 ) => {
+    const numeros = []; // Arreglo para almacenar los números de la suerte
+    let iteracion = 0; // Contador de iteraciones
+
+    while (numeros.length < size) { // Genera 6 números
+        const numeroAleatorio = generarNumeroAleatorio(minNum, maxNum); // Genera un número aleatorio entre 1 y 54
+        if (elNumeroExisteEnArreglo(numeros, numeroAleatorio) === false) { // Verifica si el número ya existe
+            numeros.push(numeroAleatorio); // Agrega el número al arreglo si no existe
+        }
+        console.log(iteracion, numeros, numeroAleatorio); // Imprime el número generado
+        iteracion++; // Incrementa el contador de iteraciones
+    }
+    imprimirMelateChocolate(numeros); // Imprime los números en el DOM
+}
+
 
 // ============== Ciclo do...while ======================
 //                (do while loop)
