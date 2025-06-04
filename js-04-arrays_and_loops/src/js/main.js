@@ -316,6 +316,56 @@ const generarNumerosSuerte = (size = 6, minNum = 1, maxNum = 54 ) => {
     imprimirMelateChocolate(numeros); // Imprime los números en el DOM
 }
 
+// -------------- Uso del método sort() -------------------
+const numerosIniciales = [5, 33, 8, 100, 4, 2, 7, 6];
+                    //   [5, 33, 8, 100, 4, 2, 7, 6] iteración 0
+                    //   [5, 8, 33, 100, 4, 2, 7, 6] iteración 1
+                    //   [5, 8, 33, 100, 4, 2, 7, 6] iteración 2
+                    //   [5, 8, 33, 4, 100, 2, 7, 6] iteración 3
+                    //   [5, 8, 33, 4, 2, 100, 7, 6] iteración 4
+                    //   [5, 8, 33, 4, 2, 7, 100, 6] iteración 5
+                    //   [5, 8, 33, 4, 2, 7, 6, 100] iteración 6
+                    // y vuelve a empezar otra vez comparando a = 5 y b = 8 
+
+const comparaNumerosOrdenAscendente = (a, b) => {
+    if (a < b) return -1; // no lo mueve
+    if (a > b) return 1; // lo mueve de posición
+    return 0; // no lo mueve
+}
+
+                                // 5 - 33 = -28 no se mueve 
+                                // 33 - 8 = 25 se mueve
+const comparaNumerosOrdenAscendente2 = (a, b) => a - b; // si es negativo y 0 no se mueve, si es positivo se mueve 
+
+
+const comparaNumerosOrdenDescendente = (a, b) => {
+    if (a < b) return 1; // lo mueve de posición
+    if (a > b) return -1; // no lo mueve de posición
+    return 0; // no lo mueve
+}
+                                // 33 - 5 = 28 se mueve 
+                                //  8 - 5 = 3 se mueve
+const comparaNumerosOrdenDescendente2 = (a, b) => b - a; // si es negativo y 0 no se mueve, si es positivo se mueve 
+
+
+
+
+const ordenarNumeros = ( numerosDesordenados, fncCallBack) => {
+    const numerosOrdenados = numerosDesordenados.slice();
+    numerosOrdenados.sort(fncCallBack);
+    return numerosOrdenados;
+}
+
+console.log( numerosIniciales);
+console.log( ordenarNumeros(numerosIniciales, comparaNumerosOrdenAscendente));
+console.log( ordenarNumeros(numerosIniciales, comparaNumerosOrdenDescendente));
+console.log( ordenarNumeros(numerosIniciales, comparaNumerosOrdenAscendente2));
+console.log( ordenarNumeros(numerosIniciales, comparaNumerosOrdenDescendente2));
+console.log( ordenarNumeros(numerosIniciales, (a, b) => b - a)); // muy común de utilizar este tipo de callback
+console.log( numerosIniciales); // pase por referencia se perdió el arreglo original la ser un objeto, debemos
+//  evitar que modifique nuestro arreglo original, para eso utilizamos el método slice, este crea una copia 
+// del arreglo original
+
 
 // ============== Ciclo do...while ======================
 //                (do while loop)
