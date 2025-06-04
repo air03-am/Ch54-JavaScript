@@ -290,13 +290,7 @@ const generarNumeroAleatorio = (minNum, maxNum) => {
 } //Esta fúnción genera un solo número aleatorio entre un rango de números
 
 const elNumeroExisteEnArreglo = (arreglo, numero) => {
-    // Verifica si el número existe en el arreglo
-    for (const elemento of arreglo) {
-        if (elemento === numero) {
-            return true; // El número existe en el arreglo
-        }
-    }
-    return false; // El número no existe en el arreglo
+    return arreglo.includes(numero); // Usa el método includes para verificar si el número existe en el arreglo
 } // Esta función verifica si un número existe en un arreglo
 
 // Función imprimir en el DOM
