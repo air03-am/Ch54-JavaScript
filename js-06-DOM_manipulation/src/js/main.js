@@ -27,51 +27,101 @@ element.style.cursor	            Cambia el cursor al pasar sobre el elemento.	  
 /**
  *  Cambiar el contenido de un elemento HTML por medio de su ID
  */
-const changeElementById = () =>{
-  // document: representa cualquier página web carga en el navegador
-  //         sirve como punto de entrada al contenido de la página.
-  //         document es el objeto principal del DOM.
-    const descripcionOperadores = document.getElementById("descripcion-document");
-    console.log( descripcionOperadores );
-    // descripcionOperadores.innerText = "document: representa cualquier página web carga en el navegador.";
+const changeElementById = () => {
+    // document: representa cualquier página web cargada en el navegador
+    //         sirve como punto de entrada al contenido de la página.
+    //         document es el objeto principal del DOM.
+    const descripcionOperadores = document.getElementById("descripcion-document"); // acceder a descripcion-document para guardarla en la variable descripcionOperadores
+    console.log(descripcionOperadores); //Accedemos a la variable
+
     //descripcionOperadores.innerText = "<strong>document</strong>: representa cualquier página web carga en el navegador.";
-    //descripcionOperadores.innerHTML = "<strong>document</strong>: representa cualquier página web carga en el navegador.";
+    //descripcionOperadores.textContent = "<strong>document</strong>: representa cualquier página web carga en el navegador.";
     descripcionOperadores.innerHTML = '<span class="text-warning">document</span>: representa cualquier página web carga en el navegador.';
+    //insertamos texto en la pagina html sustituyendola por el parraffo con id descripcion-document
+    //Se modifica lo que esta en memoria no el documento original
 }
 
 changeElementById();
 
+/* 
+ Modificar parrafo en linea 44 a 49 
+ Mostrar una tarjeta de bootstrap con el titulo "<Mi nombre>"
+
+ -Crear una nueva función que inserte la tarjeta
+ -Invocar la función para que se ejecute
+*/
+const changeElementp = (name) => {
+    const descripcionOperadores = document.getElementById("card");
+    console.log(descripcionOperadores);
+    descripcionOperadores.innerHTML =`
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="..."> <div class="card-body"> 
+                <h5 class="card-title">${name}</h5> 
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a> 
+            </div>
+        </div > `
+}
+changeElementp("María José");
+
 /**
  * Modificar elementos por su tag(etiqueta HTML)
  */
-const changeElementsByTagName =  () => {
-   const listItems = document.getElementsByTagName("li");
-   console.log( listItems );
+const changeElementsByTagName = () => {
+    const listItems = document.getElementsByTagName("li");
+    console.log(listItems);
 
-   for( let item of listItems){
-     item.innerText = "Mi nuevo li"
-   }
+    for (let item of listItems) {
+        item.innerText = "Mi nuevo li"
+    }
 
 }
+//changeElementsByTagName();
 
-// changeElementsByTagName();
+/*
+ -Realizar una función que lea todos los botónes de la página
+ y muestre en consola el número total de botones 
+ */
+const changeElementsByTagbutton = () => {
+    const buttons = document.getElementsByTagName("button");
+    console.log(buttons);
+    let contador = 0;
+
+    for (let item of buttons) {
+        contador++;
+    }
+    console.log(contador);
+}
+changeElementsByTagbutton();
+// Otra opción
+const contarBotones = () => {
+    const botones =document.querySelectorAll("button");
+    console.log('Total de botones en la página', botones.length);
+}
+contarBotones();
+
+
 
 /**
  * Acceder a un elemento usando el selector universar
  */
-const getElementsByQuerySelector = () =>{
-                  // document.getElementById("descripcion-operadores");
+const getElementsByQuerySelector = () => {
+    // document.getElementById("descripcion-operadores");
+    // # -> id 
+    // p, h1, button ... -> tag
+    // . -> Clase
+    // a.text-warning -> Selector compuesto de tag y clase, solo nos traira el elemento que este dentro de a y y de la clase definida
     const element = document.querySelector("#descripcion-operadores");
     console.log(element);
 
     const elementParagraph = document.querySelector("p"); // Seleccionar el primer paragraph que se encuentre    
-    console.log( elementParagraph );
+    console.log(elementParagraph);
 
     const classTextCenter = document.querySelector(".text-center"); // Seleccionar el primer elemento con la clase text-center
-    console.log( classTextCenter );
+    console.log(classTextCenter);
 
     const anchorAndTextWarning = document.querySelector("a.text-warning"); // primer anchor que tenga la clases text-warning
-    console.log( anchorAndTextWarning)
+    console.log(anchorAndTextWarning)
 }
 
 getElementsByQuerySelector();
@@ -80,9 +130,9 @@ getElementsByQuerySelector();
  * Acceder a varios elementos usando el selector universal
  * 
  */
-const getListItemsByQuerySelector = () =>{
+const getListItemsByQuerySelector = () => {
     const listItems = document.querySelectorAll(".text-start li");
-    console.log( listItems );
+    console.log(listItems);
 }
 
 getListItemsByQuerySelector();
@@ -91,10 +141,10 @@ getListItemsByQuerySelector();
 // ----------------------- Ejercicio ----------------------------------
 // Seleccionar la imagen de dinosaurio que se muestra.
 // mostrar en consola el objeto
-const getImagenDinosaurio = ( ) => {
+const getImagenDinosaurio = () => {
 
 }
-getImagenDinosaurio( );
+getImagenDinosaurio();
 
 // Cambiar la imagen de dinosaurio a la imagen web-developer
 const changeImage = () => {
@@ -126,10 +176,10 @@ imagenPrincipal.style.cursor = "pointer";
  */
 // imagenPrincipal.addEventListener( evento , callback );
 // imagenPrincipal.addEventListener( "click" , changeImage );
-imagenPrincipal.addEventListener( "click" , ()=>{
+imagenPrincipal.addEventListener("click", () => {
     // Hacer otras cosas
     changeImage();
-} );
+});
 
 
 // ------------------ Propiedades de visualización ---------------
@@ -142,9 +192,9 @@ refBtnPrimary = document.getElementById("btn-primary");
 refBtnSecondary = document.getElementById("btn-secondary");
 refBtnSuccess = document.getElementById("btn-success");
 
-refBtnPrimary.addEventListener("click", ()=>{
+refBtnPrimary.addEventListener("click", () => {
     refBtnPrimary.style.display = "none";
-} );
+});
 
 // Aplicar visibility = "hidden" para el btn-secondary
 refBtnSecondary.addEventListener("click", () => {
@@ -154,7 +204,7 @@ refBtnSecondary.addEventListener("click", () => {
 // Reestablecer la visualizacion de los botones primary y secondary
 // Usando el evento mouseover : Se activa cuando el puntero del ratón pasa sobre el botón
 // display: "block"      visibility: "visible"
-refBtnSuccess.addEventListener ( "mouseover", () => {
+refBtnSuccess.addEventListener("mouseover", () => {
     refBtnPrimary.style.display = "block";
-    refBtnSecondary.style.visibility = "visible"; 
-} );
+    refBtnSecondary.style.visibility = "visible";
+});
