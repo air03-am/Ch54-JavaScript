@@ -1,8 +1,8 @@
 
+                        //debemos pasar el objeto donde se va a insertar, en este caso el header 
+const insertMainHeader = (header) => {
 
-const insertMainHeader = ( header )=>{
-    
-     header.innerHTML = `
+    header.innerHTML = `
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="#">JavaScript Course</a>
@@ -27,7 +27,11 @@ const insertMainHeader = ( header )=>{
             </div>
         </div>
         </nav>
-     `;
+    `;
 
 }
+
+const myVar = "Ch54";
+
+export { insertMainHeader, myVar}; //exportancion nombrada
 

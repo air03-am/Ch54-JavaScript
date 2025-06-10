@@ -60,6 +60,8 @@ Características clave de los módulos JS:
     return a + b;
   }
 
+  export { PI, sumar}; // Exportación nombrada 
+
   También puedes exportar por defecto (solo uno por módulo):
   export default function saludar(nombre) {
     return `¡Hola, ${nombre}!`;
@@ -78,6 +80,20 @@ Características clave de los módulos JS:
 
 
 // importa las funciones del footer y header e invócalos para que se ejecuten
+//Se hacen al inicio del .js
+
+import { insertMainHeader } from "../modules/header/header.js"; // imoortación nombrada, solo es la referencia aun hay que invocarla
+
+
+import footer from "../modules/footer/footer.js"; //importación por default y cambio de nombre, solo se puede hacer con este tipo de impoortación 
+
+
+insertMainHeader(document.getElementById("header")); //invocación de la función y paso del argumento (id declarado en html con el nombre header)
+
+
+footer(document.getElementById("footer"));
+
+
 
 
 
@@ -100,7 +116,68 @@ Características clave de los módulos JS:
 
 */
 
+/*
+ Crear en el HTML un input y un botón para guardar el valor en el localStorage
+ Al cargar la página, si hay un valor guardado, mostrarlo en el titulo H1 "Hola, [nombre]"
+ En caso contario, mostrar "Hola, persona invitada".
+*/
+//Referencia de los elementos de html
+const nombreInput = document.getElementById("nombreInput");
+const boton = document.getElementById("btnGuardar");
+const saludosH1 = document.getElementById("saludo");
 
+//Para obtener el nombre si esta guardado en localStorage
+// si no existe el local storage me regresara null que equivale a falso
+//operador de corto circuito
+
+const leerNombreDelLocalStorage = () => {
+  const nombre = localStorage.getItem("nombre") || "persona invitada"; //se esta leyendo el atributo nombre, si no existe entrega null
+  return nombre;
+}
+
+// funcion para insertar el nombre
+const insertarNombreEnElDOM = () => {
+  const refH1 = document.querySelector("#bienvenida"); //obtenr la referencia del objeto
+  const nombre = leerNombreDelLocalStorage();
+  //refH1.innerHTML =  `Hola, ${nombre}`;
+  refH1.textContent = `Hola, ${nombre}`; //conviene mas que el html ya que si alguien ingresa codigo con innerhtml se podría insertar
+}
+insertarNombreEnElDOM();
+
+//Funcion para el manejo del botón
+
+const manejoDelBotonGuardar = () => {
+  //para leer el input (al ser una etiqueta de autocierre) se necesita .value  la mayoria  
+  const refInput = document.querySelector("#nombreInput");
+  const newName = refInput.value; //si esto empty string sería falso 
+  newName && localStorage.setItem("nombre", newName); //si es verdadero se ejecutara el localStorage y lo agregara al localStorage
+}
+
+// NO LO DEBEMOS HACER ya que contaminamos el object window
+// window.aLlamadaBotonGuardar = manejoDelBotonGuardar; //asignamos la función al objeto window para que pueda ser llamada desde el HTML
+// Otra forma de hacerlo es con un evento
+
+/**
+ *  ¿Qué es addEventListener?
+ *  Es un método que permite escuchar eventos (como click, keydown, submit, etc.) en un elemento 
+ *  del DOM, y ejecutar una función cuando ese evento ocurre.
+ */
+
+const refSaveButton = document.querySelector("#btnGuardar"); // mi navegador lo recibe como un objeto y a traves de la API DOM puedo acceder a sus propiedades y métodos
+refSaveButton.addEventListener("click", manejoDelBotonGuardar) //funcion de callback
+
+const refNameInput = document.querySelector("#nombreInput");
+refNameInput.addEventListener("keydown", (event) => {
+  console.log(event.key); // muestra el evento en la consola
+}); //función de callback que se ejecuta al presionar una tecla en el input
+
+/*
+ Cuando usas un script como módulo (<script type="module">),
+ las funciones no se exponen automáticamente al objeto global `window`.
+ por lo tanto no puedes llamarlas directamente desde el HTML.
+ con onclick="nombreDeLaFuncion()"  
+ En su lugar, debes usar `addEventListener` para asignar eventos a los elementos del DOM.
+*/
 
 
 /*
@@ -127,11 +204,10 @@ const tercerPaso = () => {
   console.log("03 - Fin de mi programa");
 };
 
-/*
-primerPaso();
-segundoPaso(); // Este proceso demora tiempo
-tercerPaso();
-*/
+
+// primerPaso();
+// segundoPaso(); // Este proceso demora tiempo
+// tercerPaso();
 
 /*
  Programación asíncrona.
@@ -145,14 +221,24 @@ tercerPaso();
 
   setTimeout()
    Establece un temporizador que ejecuta una función de callback
-   una vez que expire el temporizador
+   una vez que expire el temporizador, solo se ejecuta una vez, a diferencia de setInterval que se ejecuta repetidamente.
+  setInterval()
 
    sintaxis:
      setTimeout( fncCallback, tiempo_ms, argumentos_fnc );
      setTimeout( ()=>{}  , tiempo_ms );
 
 */
+const saludar = (nombre) => alert(`Hola, ${nombre}`);// Función que muestra un saludo en una alerta
 
+const saludarTrascurridoXSeg = (milisegundos) =>{
+  
+  setTimeout(saludar, milisegundos, "Neo"); // Llama a la función saludar después de milisegundos, pasando "Neo" como argumento
+} 
+
+// console.log("Inicio del programa asíncrono");
+// saludarTrascurridoXSeg(5000); // Llamada a la función con el argumento de 5000 milisegundos = 5 segundos
+// console.log("Fin del programa asíncrono, no se bloquea el hilo de ejecución");
 
 
 
