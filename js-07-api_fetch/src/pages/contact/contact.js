@@ -75,7 +75,8 @@ const abrirLaBolsa = ( numeroDeVueltas ) => {
 
 
 // Ya tengo el elote, pero falta abrir la bolsa
-irPorElElote("Noche") //estado pending 
+const tiempo = "tarde"; // Defino la hora del día
+irPorElElote(tiempo) //estado pending 
     .then((response) => {
         console.log("1raPromesa", response);
         const vueltas = 2; // Defino el número de vueltas
