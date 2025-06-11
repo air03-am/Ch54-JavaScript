@@ -64,9 +64,22 @@ const numDeVueltas = (number) => {
     });
     return miPromesa;
 }
+/*
+ La función se llama ponerChilito()
+ La función NO tiene parámetros de entrada 
+ Realizar una promesa que retorne en el estado resolve: "Chilito del que pica";
 
+ La función no debe tener reject.
 
-
+ */
+const ponerChilito = () => {
+    const miPromesa = new Promise((resolve) => {
+        resolve("Chilito del que pica");
+    });
+    return miPromesa;
+}
+// Otra forma de crear una promesa
+const ponerChilito2 = Promise.resolve("Chilito del que pica");
 
 // miFuncionPromesa().then( callback ).catch( callback ).finally( callback );
 /*
@@ -80,13 +93,74 @@ irPorElElote("noche")
 */
 // Ya tengo mi elote, pero falta abri la bolsa
 
+/*
 const tiempo = "tarde"; 
 irPorElElote( tiempo )
-    .then( ( response )=> {
+    .then( ( response )=> { //promesa 1
         console.log("Promesa", tiempo, response);
         numDeVueltas( response.vueltas )
-        .then( response => console.log( tiempo, response ))
+        .then( response => { // promesa 2
+            console.log( tiempo, response )
+            ponerChilito()
+            .then( resolve => console.log("Promesa Chilito", resolve)) // promesa 3
+        })
         .catch((error) => console.log( error));
     })
     .catch((error) => console.log("Promesa rechazada:", error)) // si la promesa es rechazada se ejecuta el catch
     .finally( () => console.log("Se ha terminado tu promesa")); 
+*/
+
+/*
+const tiempo = "tarde"; 
+irPorElElote( tiempo )//promesa 1
+    .then( ( response )=> { 
+        console.log("Promesa", tiempo, response);
+        return numDeVueltas( response.vueltas ); // promesa 2
+    }) // promesa 1 resuelta
+    .then((response)=> {// promesa 2 resuelta
+        console.log( "Promesa no.Vueltas", response);
+        return ponerChilito(); // promesa 3
+    }) 
+    .then((response) => console.log("Promesa Chilito", response)) // promesa 3 resuelta
+    .catch((error) => console.log("Promesa rechazada:", error)) // 1 catch para todas las promesas
+    .finally( () => console.log("Se ha terminado tu promesa")); 
+*/
+
+    // ============= Uso de async/await =============
+// mi funcion debe de llevar la palabra reservada async
+const crisQuiereElote = async () => {
+    try {
+        const tiempo = "tarde";
+        const response = await irPorElElote(tiempo)//promesa 1
+        console.log(response); // promesa 1 resuelta
+        const respuestaBolsa = await numDeVueltas(response.vueltas); // promesa 2
+        console.log(respuestaBolsa); // promesa 2 resuelta
+        const mensajeFinal = await ponerChilito(); // promesa 3
+        console.log(mensajeFinal); // promesa 3 resuelta
+    } catch (error){ //atrapamos el error de todas las promesas
+        console.log("Promesa rechazada:", error); // 1 catch para todas las promesas
+    }
+}
+
+console.log("Inicio de la función crisQuiereElote");
+await crisQuiereElote();
+console.log("Fin de la función crisQuiereElote");
+
+
+// =============== Uso de la API Fetch ===============
+
+const leerProductos = async (url) => {
+
+    try {
+        // funcion asinc que retorna una promesa
+        const response = await fetch(url); //hicimos una peticion http a un servidor y obtuvimos los datos en formato json
+        console.log(response); // Muestra el objeto Response de la petición
+        const datosApi = await response.json(); // convertir de JSON a un objeto de JavaScript
+        console.log(datosApi); // Muestra los datos obtenidos de la API
+    } catch (error) {
+        console.log("No se pudo obtener los datos de la API:", error);
+    }
+
+}
+leerProductos("https://rickandmortyapi.com/api/character");
+
