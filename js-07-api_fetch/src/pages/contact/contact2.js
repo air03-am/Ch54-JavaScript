@@ -1,3 +1,15 @@
+import { insertMainHeader } from "../../modules/header/header.js"; // imoortación nombrada, solo es la referencia aun hay que invocarla
+
+
+import footer from "../../modules/footer/footer.js"; //importación por default y cambio de nombre, solo se puede hacer con este tipo de impoortación 
+
+
+insertMainHeader(document.getElementById("header")); //invocación de la función y paso del argumento (id declarado en html con el nombre header)
+
+
+footer(document.getElementById("footer"));
+
+
 /*
  API: Application Programming Interface
    Permite la comunicación entre dos aplicaciones de software
@@ -22,6 +34,7 @@
  3.- Rejected: La promesa se rechaza con un razón
 
 */
+
 const vueltasAleatorias = (min = 1, max = 10) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
@@ -126,7 +139,7 @@ irPorElElote( tiempo )//promesa 1
     .finally( () => console.log("Se ha terminado tu promesa")); 
 */
 
-    // ============= Uso de async/await =============
+// ============= Uso de async/await =============
 // mi funcion debe de llevar la palabra reservada async
 const crisQuiereElote = async () => {
     try {
@@ -137,7 +150,7 @@ const crisQuiereElote = async () => {
         console.log(respuestaBolsa); // promesa 2 resuelta
         const mensajeFinal = await ponerChilito(); // promesa 3
         console.log(mensajeFinal); // promesa 3 resuelta
-    } catch (error){ //atrapamos el error de todas las promesas
+    } catch (error) { //atrapamos el error de todas las promesas
         console.log("Promesa rechazada:", error); // 1 catch para todas las promesas
     }
 }
@@ -149,18 +162,60 @@ console.log("Fin de la función crisQuiereElote");
 
 // =============== Uso de la API Fetch ===============
 
+
+//funciones expresadas: async function myFunction() { ... }
+//funciones flecha: const myFunction = async () => { ... }
+
 const leerProductos = async (url) => {
 
     try {
         // funcion asinc que retorna una promesa
         const response = await fetch(url); //hicimos una peticion http a un servidor y obtuvimos los datos en formato json
-        console.log(response); // Muestra el objeto Response de la petición
+        //console.log(response); // Muestra el objeto Response de la petición
         const datosApi = await response.json(); // convertir de JSON a un objeto de JavaScript
         console.log(datosApi); // Muestra los datos obtenidos de la API
+        return datosApi; // Retorna los datos obtenidos de la API
     } catch (error) {
         console.log("No se pudo obtener los datos de la API:", error);
     }
 
 }
-leerProductos("https://rickandmortyapi.com/api/character");
+
+const construirTarjetasDERickAndMorty = (personajes) => {
+    const tarjetas = personajes.map((personaje, index, array) => (
+        `<div class="col-10 col-md-6 col-lg-3 mb-3">   
+            <div class="card">
+            <img src="${personaje.image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${personaje.name}</h5>
+                    <p class="card-text">${personaje.status}</p>
+                    <a href="#" class="btn btn-primary">${personaje.species}</a>
+                </div>
+            </div>
+        </div> `
+    )); // Mapea los personajes a tarjetas HTML
+    return tarjetas;
+}
+
+const insertarTarjetasEnElDOM = (tarjetas, idDOM = "cards") => {
+    const refDOM = document.getElementById(idDOM); // Obtiene la referencia del elemento con el id "cards"
+    refDOM.innerHTML = refDOM.innerHTML + tarjetas.join(""); // Inserta las tarjetas en el DOM
+    // join() convierte el array de tarjetas en una cadena de texto
+    // y lo asigna al innerHTML del elemento con el id "cards"
+}
+
+const crearCardsDeRickAndMorty = async (link) => {
+    const data = await leerProductos(link); // Llama a la función leerProductos con el enlace de la API
+    const personajes = data.results; // Accedemos a los resultados de la API
+    console.log(personajes); // Muestra los personajes obtenidos de la API
+    const tarjetas = construirTarjetasDERickAndMorty(personajes); // Construye un array en forma de tarjetas 
+    insertarTarjetasEnElDOM(tarjetas); // Inserta las tarjetas en el DOM
+
+
+
+}
+
+
+
+crearCardsDeRickAndMorty("/public/json/rick.json"); // pagina 1
 

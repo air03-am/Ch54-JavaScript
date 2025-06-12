@@ -1,3 +1,13 @@
+import { insertMainHeader } from "../../modules/header/header.js"; // imoortación nombrada, solo es la referencia aun hay que invocarla
+
+
+import footer from "../../modules/footer/footer.js"; //importación por default y cambio de nombre, solo se puede hacer con este tipo de impoortación 
+
+
+insertMainHeader(document.getElementById("header")); //invocación de la función y paso del argumento (id declarado en html con el nombre header)
+
+
+footer(document.getElementById("footer"));
 /*
  API: Application Programming Interface
    Permite la comunicación entre dos aplicaciones de software
