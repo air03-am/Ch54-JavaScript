@@ -1,4 +1,4 @@
-
+// fetch a la url para poner todos los productos 
 const getAllProducts = async (url) => {
   const response = await fetch(url);
 

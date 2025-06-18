@@ -66,3 +66,44 @@ test("Debe rechazar un nombre vacio", () => {
     expect(response.errors.length > 0).toBeTruthy();
     expect(response.errors.length).toBeGreaterThan(0);
 });
+/*
+ .toContain(item)
+ Propósito: Verifica si hay un array (o un String) contiene un elemento especifíco.
+ PAra objetos en arrays, usa toContainEqual.
+*/
+
+// Esto lo hicimos con la metodología TDD 
+test("Debe rechazar un nombre con solo espacios", () => {
+    const response = validateName("   ");
+    expect(response.isValid).toBeFalsy();
+    expect(response.errors.length).toBeGreaterThan(0);
+    expect(response.errors).toContain("No se permiten espacios en el nombre");
+});
+
+/*
+ test.each o it.each
+ Validar una función con muchos casos de entrada sin repetir código
+
+ toHaveProperty(keyPath, value?)
+ Propósito: Verifica si un objeto tiene una propiedad especifica
+ Opcionalmente, puedes especificar el valor que esperas en esa propiedad.
+*/
+
+const cases = ["je", "Je", "f", "F"];
+test.each(cases)("Debe rechazar nombres demasiado cortos", (name) =>{
+    const response = validateName(name);
+    expect(response).toHaveProperty("errors"); //La respuesta es un objeto y tiene la propiedad errors
+    expect(response).toHaveProperty("isValid", false);//La respuesta es un objeto y tiene la propiedad inValid en false
+    expect(response.isValid).toBeFalsy();
+    expect(response.errors.length).toBeGreaterThan(0);
+    expect(response.errors).toContain("El nombre debe tener más de dos caracteres");
+});
+// para descartar una prueba se utiliza .skip
+
+const noStringCases= [null, 123, undefined];
+test.each(noStringCases)("Debe rechazar valores que no son string(null, 123, undefined)", (value) =>{
+    const response = validateName(value);
+    expect(response.isValid).toBeFalsy();
+    expect(response.errors.length).toBeGreaterThan(0);
+    expect(response.errors).toContain("El valor ingresado no es un nombre válido");
+});
