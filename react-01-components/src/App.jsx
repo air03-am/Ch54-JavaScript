@@ -9,8 +9,9 @@ function App() {
   // React Fragment <></>
   <> 
     <Navbar></Navbar>
-    <Home></Home>
-    <Footer></Footer>  
+    <Home name = "Myrtle la llorona" howartsHome = "Ravenclaw"></Home>
+    <Home name = "Sercherus Snape" howartsHome = "Slytherin"></Home>
+    <Footer cohorte = {54}></Footer>  
     {/* <Footer/> */}
   </>
       
