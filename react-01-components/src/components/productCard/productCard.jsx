@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ButtonGroup, Button, Typography} from "@mui/material";
 /*
  Un componente en React se renderiza baja ciertas condiciones:
 
@@ -28,33 +29,39 @@ import { useState } from "react";
 
 */
 
-const ProductCard = () =>  {
-                //callback que Actualiza el valor que necesito actualizar de mi componente
+const ProductCard = () => {
+    //callback que Actualiza el valor que necesito actualizar de mi componente
     const [count, setCount] = useState(1);
 
     const handleIncrement = (maxValue) => {
 
         console.log("Estoy en el manejo de incremento");
-        if(count <maxValue) setCount(count + 1);
+        if (count < maxValue) setCount(count + 1);
         console.log("Valor de count: " + count);
 
     }
 
     const handleDecrement = (minValue) => {
         console.log("Estoy en el manejo de decremento");
-        if(count > minValue) setCount(count - 1);
+        if (count > minValue) setCount(count - 1);
         console.log("Valor de count: " + count);
     }
 
     return (
         <div>
-            <p>title</p>
+            {/* variant es como se va a visualizar y component es como se renderiza  */}
+            <Typography sx={{color:"green"}} variant="h2" component="h4">title</Typography>
             <p>raiting</p>
             <p>price</p>
             <p>{count}</p>
-            <button onClick = {() => handleDecrement(1)}> - </button> 
-                        {/* Callback en jsx */}
-            <button onClick = {() => handleIncrement(10)}> + </button>
+            {/*<button onClick = {() => handleDecrement(1)}> - </button> 
+                        // callback en jsx 
+            <button onClick = {() => handleIncrement(10)}> + </button>*/}
+            <ButtonGroup variant="outlined" aria-label="Basic button group">
+                <Button onClick = {() => handleDecrement(1)}>-</Button>
+                <Button onClick = {() => handleIncrement(10)}>+</Button>
+            </ButtonGroup>
+
 
         </div>
 
@@ -62,4 +69,4 @@ const ProductCard = () =>  {
 
 }
 
-export {ProductCard};
+export { ProductCard };

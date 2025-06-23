@@ -1,5 +1,5 @@
 
-footer {
-    background-color: black;
-    color: bisque;
+.textFooter {
+    font-size: 2rem;
+    color: green;
 }

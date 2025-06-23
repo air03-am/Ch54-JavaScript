@@ -56,12 +56,22 @@ const desestructuracion = () => {
     console.log(myHouse)
 };
 desestructuracion();
+const semana8Style = {
+    fontSize:"2rem",
+    color: "yellow"
+};
+
+const semana8PartyStyle = {
+    fontSize:"4rem",
+    color:"red"
+};
         // desestructuracion 
-const Footer = ({cohorte}) => {
+const Footer = ({cohorte:ch}) => {
     return (
         <footer>
-            <p>CH{cohorte} - 2025</p>
-            <em>No es leviosa, es leviosaá</em>
+            <p style = { {fontSize:"2rem", color:"yellow"} } >CH{ch} - 2025</p>
+            <p style={ ch===54? semana8Style : semana8PartyStyle}>Semana 8</p>
+            <em className="textFooter">¡Es leviosa, no leviosá!</em>
         </footer>
     );
 };
